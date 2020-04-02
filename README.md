@@ -1,4 +1,4 @@
-# tester-sample-app
+# tester-sample-app [![Build Status](https://travis-ci.com/bartoszbialecki/tester-sample-app.svg?branch=master)](https://travis-ci.com/bartoszbialecki/tester-sample-app)
 
 This app is used for Software Tester classes on continuous integration and delivery.
 

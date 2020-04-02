@@ -4,6 +4,10 @@ node_js:
 
 sudo: required
 
+notifications:
+  email:
+    on_success: never
+
 cache:
   yarn: true
   directories:

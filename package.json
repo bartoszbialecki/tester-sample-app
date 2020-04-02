@@ -9,7 +9,7 @@
     "server": "nodemon ./bin/www",
     "build": "cd client && yarn build",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start:client\"",
-    "heroku-postbuild": "yarn --production=false && yarn build",
+    "heroku-postbuild": "yarn --production=false && yarn install-deps && yarn build",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "lint:fix": "eslint '**/*.{js,jsx}' --fix",
     "test": "yarn test:api && yarn test:client",

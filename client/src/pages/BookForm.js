@@ -47,7 +47,7 @@ export default function BookForm() {
 
       <div className="nav">
         <Link to="/">
-          <button type="button" className="button">
+          <button id="home-button" type="button" className="button">
             Home
           </button>
         </Link>
@@ -97,7 +97,7 @@ export default function BookForm() {
             required
           />
         </label>
-        <button type="submit" className="button">
+        <button id="add-book-button" type="submit" className="button">
           Add book
         </button>
       </form>

@@ -23,6 +23,24 @@ class Home extends Component {
       });
   };
 
+  onRemove = isbn => {
+    fetch(`/api/books/${isbn}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        if (!responseJson.error) {
+          const { books } = this.state;
+          const newBooks = books.filter(book => {
+            return book.isbn !== isbn;
+          });
+
+          this.setState({ books: newBooks });
+        }
+      });
+  };
+
   render() {
     const { books } = this.state;
 
@@ -32,7 +50,7 @@ class Home extends Component {
 
         <div className="nav">
           <Link to="./new-book">
-            <button type="button" className="button">
+            <button id="add-book-button" type="button" className="button">
               Add new book
             </button>
           </Link>
@@ -43,7 +61,7 @@ class Home extends Component {
             {books.map(book => {
               return (
                 <li key={book.isbn} className="book-item">
-                  <Book {...book} />
+                  <Book {...book} onRemove={this.onRemove} />
                 </li>
               );
             })}

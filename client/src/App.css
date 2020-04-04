@@ -102,3 +102,34 @@ input[type="text"] {
   margin-right: 2%;
   margin-bottom: 2%;
 }
+
+.delete-button {
+  display: inline-block;
+  background: #ba453d;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  position: relative;
+}
+
+.delete-button:after {
+  content: "x";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: -1px;
+  left: 2px;
+}
+
+.delete-button span {
+  display: none;
+}
+
+.delete-button:hover {
+  background: #722c27;
+}

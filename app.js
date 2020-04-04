@@ -3,7 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const usersRouter = require("./routes/users");
+const booksRouter = require("./routes/books");
 
 const app = express();
 
@@ -13,13 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.use("/users", usersRouter);
-
-app.get("/api/test", function handler(req, res) {
-  res.json({
-    message: "test message"
-  });
-});
+app.use("/api/books", booksRouter);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

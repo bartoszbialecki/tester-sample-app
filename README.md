@@ -1,4 +1,4 @@
-# tester-sample-app [![Build Status](https://travis-ci.com/bartoszbialecki/tester-sample-app.svg?branch=master)](https://travis-ci.com/bartoszbialecki/tester-sample-app)
+# tester-sample-app [![Build Status](https://travis-ci.com/bartoszbialecki/tester-sample-app.svg?branch=master)](https://travis-ci.com/bartoszbialecki/tester-sample-app) [![Uptime Status](https://app.statuscake.com/button/index.php?Track=6acAjhnvPa&Days=1&Design=4")](https://www.statuscake.com)
 
 This app is used for Software Tester classes on continuous integration and delivery.
 

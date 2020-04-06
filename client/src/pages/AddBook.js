@@ -57,7 +57,9 @@ export default function BookForm() {
         {errorMessage && <span className="error-message">{errorMessage}</span>}
 
         {successMessage && (
-          <span className="success-message">The book was added.</span>
+          <span data-testid="success-message" className="success-message">
+            The book was added.
+          </span>
         )}
       </div>
 
@@ -65,6 +67,7 @@ export default function BookForm() {
         <label htmlFor="isbn" className="form-label">
           <span>ISBN</span>
           <input
+            data-testid="isbn"
             name="isbn"
             type="text"
             placeholder="ISBN"
@@ -77,6 +80,7 @@ export default function BookForm() {
         <label htmlFor="title" className="form-label">
           <span>Title</span>
           <input
+            data-testid="title"
             name="title"
             type="text"
             placeholder="Title"
@@ -89,6 +93,7 @@ export default function BookForm() {
         <label htmlFor="author" className="form-label">
           <span>Author</span>
           <input
+            data-testid="author"
             name="author"
             type="text"
             placeholder="Author"
@@ -97,7 +102,12 @@ export default function BookForm() {
             required
           />
         </label>
-        <button id="add-book-button" type="submit" className="button">
+        <button
+          data-testid="add-book-button"
+          id="add-book-button"
+          type="submit"
+          className="button"
+        >
           Add book
         </button>
       </form>

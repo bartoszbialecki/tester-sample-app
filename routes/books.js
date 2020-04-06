@@ -23,6 +23,16 @@ router.get("/", async (req, res) => {
 // create new book
 router.post("/", async (req, res) => {
   const newBook = req.body;
+
+  if (
+    newBook.isbn.trim() === "" ||
+    newBook.title.trim() === "" ||
+    newBook.author.trim() === ""
+  ) {
+    res.status(400).send(response("Please give all required fields.", true));
+    return;
+  }
+
   const book = await booksRepository.getBook(newBook.isbn);
 
   if (book) {
@@ -54,7 +64,16 @@ router.get("/:isbn", async (req, res) => {
 // update book
 router.put("/:isbn", async (req, res) => {
   const { isbn } = req.params;
-  const newBook = req.body;
+  const newBook = { isbn, ...req.body };
+
+  if (
+    isbn.trim() === "" ||
+    newBook.title.trim() === "" ||
+    newBook.author.trim() === ""
+  ) {
+    res.status(400).send(response("Please give all required fields.", true));
+    return;
+  }
 
   await booksRepository
     .updateBook(isbn, newBook)

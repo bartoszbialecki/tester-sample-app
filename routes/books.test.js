@@ -8,9 +8,9 @@ const createBook = async (
   author = "Test Author"
 ) => {
   return request(app).post("/api/books").send({
-    isbn: "123123",
-    title: "Test Title",
-    author: "Test Author"
+    isbn: isbn,
+    title: title,
+    author: author
   });
 };
 
@@ -59,6 +59,13 @@ describe("/api/books", () => {
 
       expect(response.status).toBe(409);
     });
+
+    it("should not create a new book if not required data are given", async () => {
+      const response = await createBook("");
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("Please give all required fields.");
+    });
   });
 
   describe("GET book", function () {
@@ -85,7 +92,6 @@ describe("/api/books", () => {
       await createBook();
 
       const response = await request(app).put("/api/books/123123").send({
-        isbn: "123123",
         title: "New Test Title",
         author: "New Test Author"
       });
@@ -96,12 +102,22 @@ describe("/api/books", () => {
 
     it("should not update book if not exists", async () => {
       const response = await request(app).put("/api/books/123123").send({
-        isbn: "123123",
         title: "New Test Title",
         author: "New Test Author"
       });
 
       expect(response.status).toBe(404);
+    });
+
+    it("should not update book if required parameters are empty", async () => {
+      await createBook();
+      const response = await request(app).put("/api/books/123123").send({
+        title: "",
+        author: "New Test Author"
+      });
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toEqual("Please give all required fields.");
     });
   });
 

@@ -13,7 +13,7 @@
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "lint:fix": "eslint '**/*.{js,jsx}' --fix",
     "test": "yarn test:api && yarn test:client",
-    "test:api": "./client/node_modules/jest/bin/jest.js --testPathIgnorePatterns=./client/*",
+    "test:api": "./client/node_modules/jest/bin/jest.js --testPathIgnorePatterns=./client/* --coverage",
     "test:client": "cd client && yarn test"
   },
   "dependencies": {

@@ -9,8 +9,6 @@ cache:
   yarn: true
   directories:
     - node_modules
-env:
-  - NODE_ENV=production
 addons:
   chrome: stable
 install:

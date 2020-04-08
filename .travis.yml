@@ -9,12 +9,16 @@ cache:
   yarn: true
   directories:
     - node_modules
+addons:
+  chrome: stable
 install:
   - yarn install-deps
 before_script:
   - yarn build
 script:
   - yarn lint
+  - yarn dev &
+  - sleep 15
   - yarn test
 deploy:
   provider: heroku

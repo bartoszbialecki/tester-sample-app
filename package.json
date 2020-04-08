@@ -34,9 +34,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
+    "faker": "^4.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.1",
     "prettier": "^2.0.2",
+    "puppeteer": "^2.1.1",
     "supertest": "^4.0.2"
   },
   "jest": {

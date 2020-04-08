@@ -42,7 +42,7 @@ export default function BookForm() {
   };
 
   return (
-    <div>
+    <div className="add-new-book">
       <h1>Add new book</h1>
 
       <div className="nav">
@@ -63,7 +63,7 @@ export default function BookForm() {
         )}
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form className="new-book-form" onSubmit={handleSubmit}>
         <label htmlFor="isbn" className="form-label">
           <span>ISBN</span>
           <input

@@ -1,3 +1,14 @@
 {
-  "books": []
+  "books": [
+    {
+      "isbn": "f4dd2d92-f6b3-435a-a6c4-6a3a75bd6f78",
+      "title": "withdrawal",
+      "author": "Maryse Ruecker"
+    },
+    {
+      "isbn": "6bd3a681-a79f-4a01-a8e8-80ecc22f7245",
+      "title": "Table",
+      "author": "Nikko Will"
+    }
+  ]
 }

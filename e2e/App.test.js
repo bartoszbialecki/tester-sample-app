@@ -7,11 +7,20 @@ let browser;
 let page;
 let baseUrl = "http://localhost:3000/";
 
+const isDebugging = () => {
+  const debugging_mode = {
+    headless: false,
+    slowMo: 50,
+    devtools: true
+  };
+
+  let env = (process.env.NODE_ENV || "").trim();
+
+  return env === "" || env === "production" ? {} : debugging_mode;
+};
+
 beforeAll(async () => {
-  browser = await puppeteer.launch({
-    headless: true,
-    slowMo: 0
-  });
+  browser = await puppeteer.launch(isDebugging());
 
   page = await browser.newPage();
 
@@ -25,7 +34,9 @@ beforeAll(async () => {
 });
 
 afterAll(() => {
-  browser.close();
+  if (isDebugging()) {
+    browser.close();
+  }
 });
 
 describe("Home page", () => {

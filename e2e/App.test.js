@@ -7,22 +7,12 @@ let browser;
 let page;
 let baseUrl = "http://localhost:3000/";
 
-const isDebugging = () => {
-  const debugging_mode = {
-    headless: false,
-    slowMo: 50,
-    devtools: true
-  };
-
-  const env = (process.env.NODE_ENV || "").trim();
-  console.log(env);
-  return env === "" || env === "production" ? {} : debugging_mode;
-};
-
 beforeAll(async () => {
-  browser = await puppeteer.launch(isDebugging());
-  console.log("before all");
-  console.log(browser);
+  browser = await puppeteer.launch({
+    headless: true,
+    slowMo: 0
+  });
+
   page = await browser.newPage();
 
   page.emulate({
@@ -35,11 +25,7 @@ beforeAll(async () => {
 });
 
 afterAll(() => {
-  if (isDebugging()) {
-    console.log("is debugging after all");
-    console.log(browser);
-    browser.close();
-  }
+  browser.close();
 });
 
 describe("Home page", () => {

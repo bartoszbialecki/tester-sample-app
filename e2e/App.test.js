@@ -14,14 +14,15 @@ const isDebugging = () => {
     devtools: true
   };
 
-  let env = (process.env.NODE_ENV || "").trim();
-
+  const env = (process.env.NODE_ENV || "").trim();
+  console.log(env);
   return env === "" || env === "production" ? {} : debugging_mode;
 };
 
 beforeAll(async () => {
   browser = await puppeteer.launch(isDebugging());
-
+  console.log("before all");
+  console.log(browser);
   page = await browser.newPage();
 
   page.emulate({
@@ -35,6 +36,8 @@ beforeAll(async () => {
 
 afterAll(() => {
   if (isDebugging()) {
+    console.log("is debugging after all");
+    console.log(browser);
     browser.close();
   }
 });

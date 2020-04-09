@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- stable
+  - stable
 services:
-- docker
+  - docker
 sudo: required
 notifications:
   email:
@@ -10,27 +10,28 @@ notifications:
 cache:
   yarn: true
   directories:
-  - node_modules
+    - node_modules
 addons:
   chrome: stable
 install:
-- yarn install-deps
+  - yarn install-deps
 before_script:
-- yarn build
+  - yarn build
 script:
-- yarn lint
-- yarn start &
-- yarn start:client &
-- sleep 15
-- yarn test
+  - yarn lint
+  - yarn start &
+  - yarn start:client &
+  - sleep 15
+  - yarn test
 deploy:
-- provider: heroku
-  app: pacific-hollows-74267
-  api_key:
-    secure: ruuywISE+bZyRiBsLYrQmyMOzGvBs8uz/E+2/+K9xM20T8VwskRz7fpkmkrUrbrK+YzL74NOHeCmIunEzmmOYMlnHFVN8MztuGQDwnsk2AdHzlQx3DZU9LbiMSZ2PTtcJ8q6Cb5xlJew2XQttyXaZCWZbjfOdpy06HMIj/IY7s2Vp66p36Mhm+9FiV7DNQot/NKXlhP9cSy+o6iAvg8IcsjRe2rPhoQ/k3P0mSJg78ymvDpLj1aeGo6GjfDKVEI1O1WrH37Y8R7JKzrroxrXyZqTvfVd0Ndd4ZFkw76JvXLdyVNNe+Zrc2rLGZPQgp9b2QdMSz+k2JPtbg31C2J4bqFKF/NXQof0zRN237zu89dfnurpZFZgxLpcg3iuEBXyBR6s+RTOqHZkyhE6AjFACVXqYGnmJMQ5Q8n+vfGrf9LmxepIGbumWmP7CGfovLdCWYosQ+vvu4orkBGcyYRiTfqodr8QFO+JX+eqPD94WfD53+uJmteboVkbfPX9x7g+44bDJdZLKmCIhP1NDZJtOlaTV44MEuvkEIEAGh6beNulyqD5K9CZRnQsgMpaCP400hq41LIOV/03o0VJ1g/zQZD1hNo//kf+idJ83VoeCLbqBERMSgHXASJvpLPHmxdFnpAQQNCfWNzVRDuVcppHCDenMk5ec58wUTl/qsykCgc=
-- provider: script
-  script: deploy_docker_hub.sh
-  on:
-    branch: master
+  - provider: heroku
+    app: pacific-hollows-74267
+    api_key:
+      secure: ruuywISE+bZyRiBsLYrQmyMOzGvBs8uz/E+2/+K9xM20T8VwskRz7fpkmkrUrbrK+YzL74NOHeCmIunEzmmOYMlnHFVN8MztuGQDwnsk2AdHzlQx3DZU9LbiMSZ2PTtcJ8q6Cb5xlJew2XQttyXaZCWZbjfOdpy06HMIj/IY7s2Vp66p36Mhm+9FiV7DNQot/NKXlhP9cSy+o6iAvg8IcsjRe2rPhoQ/k3P0mSJg78ymvDpLj1aeGo6GjfDKVEI1O1WrH37Y8R7JKzrroxrXyZqTvfVd0Ndd4ZFkw76JvXLdyVNNe+Zrc2rLGZPQgp9b2QdMSz+k2JPtbg31C2J4bqFKF/NXQof0zRN237zu89dfnurpZFZgxLpcg3iuEBXyBR6s+RTOqHZkyhE6AjFACVXqYGnmJMQ5Q8n+vfGrf9LmxepIGbumWmP7CGfovLdCWYosQ+vvu4orkBGcyYRiTfqodr8QFO+JX+eqPD94WfD53+uJmteboVkbfPX9x7g+44bDJdZLKmCIhP1NDZJtOlaTV44MEuvkEIEAGh6beNulyqD5K9CZRnQsgMpaCP400hq41LIOV/03o0VJ1g/zQZD1hNo//kf+idJ83VoeCLbqBERMSgHXASJvpLPHmxdFnpAQQNCfWNzVRDuVcppHCDenMk5ec58wUTl/qsykCgc=
+  - provider: script
+    skip_cleanup: true
+    script: chmod +x ./deploy_docker_hub.sh && ./deploy_docker_hub.sh
+    on:
+      branch: master
 env:
   secure: dS0Rd9dRSqly7T8QmSrg0VtcErMDSu59FhpEGAU/IaVRw2bZeq24Yq3BIcHEnE4BQc7i70CexgQP30xS7w3mtjJtJDPL95LVT9Cw0IE/wrB638uZYEswYcG+9xm8qQMojucHkjHK25GdcFosBVZ+2xlBCsFggniWvYhBtY2u26TtEmtOoBlKU/KfTVc016QSfSdDtLaE6ge4V2Kog12Xe/hMnoj4ds6iEdo0wd9v1N6yYT6GuKjKf2+hyv5a3m2hsgVtG3a2miSkjMYcrYP2ScL2ga+rmxYj6Ro3MSZGyBDupvfiEnS9LLPsRDzRev1sk0IATc/r1Cpp8pskyV4aGh7ZjUaziYb0izkhi/c5vPf6qQiy4WuP6ZfC6Kdw8O7I6CxCxtXBORoAHiE3fgFTU/hg/uuIVA/7WTj7FHA1tT1zpYCVRPTGyq/bAfU7TpMwPxYA2FPnwoxaPMVLQGludhovNGDWN966bt9kgpPUWSilgKE7jiy8D7OgiXHqDbHlkTgN/Ab3iwzrpwVQScHSD2Sznsnqas6r+Tk03QFmYtAwoP6AuMPepgY4TNOgiJ0iaaALUEdkfHavU+doR7rZ+yH0X16BLgPm9EDxS81G6is4LxyKkfjQkyFRImolbYChGmF1QZ/aIF2x7iDZn9L05Yszucca/vc+ksv5gXjbEu0=

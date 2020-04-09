@@ -3,7 +3,7 @@ set -e
 
 SERVICE_NAME=tester-sample-app
 IMAGE="${DOCKER_USERNAME}/${SERVICE_NAME}"
-GIT_VERSION=$(git describe --always --abbrew --tags --long)
+GIT_VERSION=$(git describe --always --abbrev --tags --long)
 IMAGE_WITH_TAG=${IMAGE}:${GIT_VERSION}
 
 docker build -t ${IMAGE_WITH_TAG} .

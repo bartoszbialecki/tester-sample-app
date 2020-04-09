@@ -1,9 +1,3 @@
 {
-  "books": [
-    {
-      "isbn": "71bc607a-d5c1-471a-95c4-fd69793e1654",
-      "title": "invoice",
-      "author": "Amy Auer"
-    }
-  ]
+  "books": []
 }

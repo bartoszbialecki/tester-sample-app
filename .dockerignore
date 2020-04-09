@@ -1,0 +1,11 @@
+**/node_modules
+yarn-error.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+**/coverage
+docker-compose.yml
+.DS_Store
+.vscode
+README.md

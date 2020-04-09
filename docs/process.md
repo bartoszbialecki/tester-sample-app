@@ -22,6 +22,8 @@ There is a description below how to build the application:
 
     You can run tests locally using `yarn test` or using linter by `yarn lint`
 
+    Tests are written with Jest and UI tests with Puppeteer.
+
 5.  Travis CI should detect commit on GitHub and trigger a build process
 
     - clone repository
@@ -31,7 +33,7 @@ There is a description below how to build the application:
     - run tests
     - deploy application to Heroku
 
-6.  If succeded, the application should be deployed on Heroku, otherwise the owner of the repository should get an email from the Travis CI about a failed build
+6.  If succeded, the application should be deployed on Heroku and docker image shoudl be created and deployed on docker hub, otherwise the owner of the repository should get an email from the Travis CI about a failed build
 
 ## Diagram of the process
 

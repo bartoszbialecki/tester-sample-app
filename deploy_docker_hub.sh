@@ -12,3 +12,7 @@ docker tag ${IMAGE_WITH_TAG} ${IMAGE}:latest
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 docker push ${IMAGE_WITH_TAG}
 docker logout
+
+echo "${GITLAB_PASSWORD}" | docker login -u "${GITLAB_USERNAME}" --password-stdin registry.gitlab.com
+docker build -t registry.gitlab.com/${GITLAB_USERNAME}/${SERVICE_NAME} .
+docker push registry.gitlab.com/${GITLAB_USERNAME}/${SERVICE_NAME}

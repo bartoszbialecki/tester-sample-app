@@ -12,15 +12,14 @@ cache:
   paths:
     - node_modules/
 
-install_dependencies:
+build:
   stage: build
   script:
     - yarn install-deps
-
-build_client:
-  stage: build
-  script:
     - yarn build
+  artifacts:
+    paths:
+      - node_modules/
 
 # build:
 #   image: docker:latest

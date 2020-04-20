@@ -5,17 +5,17 @@ stages:
   - test
   - deploy
 
-before_script:
-  - yarn install-deps
+# before_script:
+#   - yarn install-deps
 
 cache:
   paths:
     - node_modules/
 
-# install_dependencies:
-#   stage: build
-#   script:
-#     - yarn install-deps
+install_dependencies:
+  stage: build
+  script:
+    - yarn install-deps
 
 build_client:
   stage: build

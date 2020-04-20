@@ -1,0 +1,74 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - yarn install-deps
+
+cache:
+  paths:
+    - node_modules/
+
+# install_dependencies:
+#   stage: build
+#   script:
+#     - yarn install-deps
+
+build_client:
+  stage: build
+  script:
+    - yarn build
+
+# build:
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   variables:
+#     DOCKER_DRIVER: overlay
+#     CI_REGISTRY: registry.gitlab.com
+#     CI_REGISTRY_IMAGE: registry.gitlab.com/tester-sample-app
+#   script:
+#     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+#     - docker build --pull -t "${CI_REGISTRY_IMAGE}:latest" .
+#     - docker push "${CI_REGISTRY_IMAGE}:latest"
+#   only:
+#     - master
+
+tests:
+  before_script:
+    # Libraries for Puppeteer https://github.com/Googlechrome/puppeteer/issues/290
+    - apt-get update
+    - apt-get install -yyq ca-certificates
+    - apt-get install -yyq libappindicator1 libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6
+    - apt-get install -yyq gconf-service lsb-release wget xdg-utils
+    - apt-get install -yyq fonts-liberation
+  stage: test
+  script:
+    - yarn lint
+    - yarn start &
+    - yarn start:client &
+    - sleep 15
+    - yarn test
+# staging:
+#   stage: deploy
+#   script:
+#     - apt-get update -yq
+#     - apt-get install -y ruby-dev
+#     - gem install dpl
+#     - dpl --provider=heroku --app=my-app-staging --api-key=$HEROKU_STAGING_API_KEY
+#   only:
+#     - master
+
+# production:
+#   stage: deploy
+#   script:
+#     - apt-get update -yq
+#     - apt-get install -y ruby-dev
+#     - gem install dpl
+#     - dpl --provider=heroku --app=my-app-production --api-key=$HEROKU_PRODUCTION_API_KEY
+#   only:
+#     - tags

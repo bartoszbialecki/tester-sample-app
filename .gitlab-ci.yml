@@ -1,12 +1,9 @@
-image: node:latest
+image: alekzonder/puppeteer
 
 stages:
   - build
   - test
   - deploy
-
-# before_script:
-#   - yarn install-deps
 
 cache:
   paths:

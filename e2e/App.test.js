@@ -10,7 +10,7 @@ let baseUrl = "http://localhost:3000/";
 beforeAll(async () => {
   browser = await puppeteer.launch({
     headless: true,
-    slowMo: 0,
+    args: ["--no-sandbox"],
   });
 
   page = await browser.newPage();

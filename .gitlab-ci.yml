@@ -30,7 +30,7 @@ build_docker:
     CI_REGISTRY: registry.gitlab.com
     CI_REGISTRY_IMAGE: registry.gitlab.com/tester-sample-app
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY #docker login registry.gitlab.com -u gitlab-ci-token -p $CI_JOB_TOKEN
     - docker build --pull -t "${CI_REGISTRY_IMAGE}:latest" .
     - docker push "${CI_REGISTRY_IMAGE}:latest"
   only:

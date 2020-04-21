@@ -10,7 +10,7 @@ let baseUrl = "http://localhost:3000/";
 beforeAll(async () => {
   browser = await puppeteer.launch({
     headless: true,
-    slowMo: 0
+    slowMo: 0,
   });
 
   page = await browser.newPage();
@@ -18,14 +18,14 @@ beforeAll(async () => {
   page.emulate({
     viewport: {
       width: 800,
-      height: 2400
+      height: 2400,
     },
-    userAgent: ""
+    userAgent: "",
   });
 });
 
-afterAll(() => {
-  browser.close();
+afterAll(async () => {
+  await browser.close();
 });
 
 describe("Home page", () => {
@@ -33,7 +33,7 @@ describe("Home page", () => {
     await page.goto(baseUrl);
     await page.waitForSelector(".app");
 
-    const html = await page.$eval("h1", e => e.innerHTML);
+    const html = await page.$eval("h1", (e) => e.innerHTML);
     expect(html).toBe("My collection of books");
   }, 900000);
 
@@ -44,7 +44,7 @@ describe("Home page", () => {
     await page.click("button#add-book-button");
     await page.waitForSelector(".add-new-book");
 
-    const html = await page.$eval("h1", e => e.innerHTML);
+    const html = await page.$eval("h1", (e) => e.innerHTML);
     expect(html).toBe("Add new book");
   });
 });
@@ -74,7 +74,7 @@ describe("Add book page", () => {
 
     await page.waitForSelector(".success-message");
 
-    const html = await page.$eval(".success-message", e => e.innerHTML);
+    const html = await page.$eval(".success-message", (e) => e.innerHTML);
     expect(html).toBe("The book was added.");
   }, 900000);
 });

@@ -20,7 +20,7 @@ build:
       - node_modules/
       - client/node_modules/
 
-build:
+build_docker:
   image: docker:latest
   stage: build
   services:

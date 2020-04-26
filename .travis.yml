@@ -38,6 +38,13 @@ deploy:
       secure: ruuywISE+bZyRiBsLYrQmyMOzGvBs8uz/E+2/+K9xM20T8VwskRz7fpkmkrUrbrK+YzL74NOHeCmIunEzmmOYMlnHFVN8MztuGQDwnsk2AdHzlQx3DZU9LbiMSZ2PTtcJ8q6Cb5xlJew2XQttyXaZCWZbjfOdpy06HMIj/IY7s2Vp66p36Mhm+9FiV7DNQot/NKXlhP9cSy+o6iAvg8IcsjRe2rPhoQ/k3P0mSJg78ymvDpLj1aeGo6GjfDKVEI1O1WrH37Y8R7JKzrroxrXyZqTvfVd0Ndd4ZFkw76JvXLdyVNNe+Zrc2rLGZPQgp9b2QdMSz+k2JPtbg31C2J4bqFKF/NXQof0zRN237zu89dfnurpZFZgxLpcg3iuEBXyBR6s+RTOqHZkyhE6AjFACVXqYGnmJMQ5Q8n+vfGrf9LmxepIGbumWmP7CGfovLdCWYosQ+vvu4orkBGcyYRiTfqodr8QFO+JX+eqPD94WfD53+uJmteboVkbfPX9x7g+44bDJdZLKmCIhP1NDZJtOlaTV44MEuvkEIEAGh6beNulyqD5K9CZRnQsgMpaCP400hq41LIOV/03o0VJ1g/zQZD1hNo//kf+idJ83VoeCLbqBERMSgHXASJvpLPHmxdFnpAQQNCfWNzVRDuVcppHCDenMk5ec58wUTl/qsykCgc=
     on:
       branch: master
+  - provider: heroku
+    app: tester-sample-app-dev
+    api_key:
+      secure: ruuywISE+bZyRiBsLYrQmyMOzGvBs8uz/E+2/+K9xM20T8VwskRz7fpkmkrUrbrK+YzL74NOHeCmIunEzmmOYMlnHFVN8MztuGQDwnsk2AdHzlQx3DZU9LbiMSZ2PTtcJ8q6Cb5xlJew2XQttyXaZCWZbjfOdpy06HMIj/IY7s2Vp66p36Mhm+9FiV7DNQot/NKXlhP9cSy+o6iAvg8IcsjRe2rPhoQ/k3P0mSJg78ymvDpLj1aeGo6GjfDKVEI1O1WrH37Y8R7JKzrroxrXyZqTvfVd0Ndd4ZFkw76JvXLdyVNNe+Zrc2rLGZPQgp9b2QdMSz+k2JPtbg31C2J4bqFKF/NXQof0zRN237zu89dfnurpZFZgxLpcg3iuEBXyBR6s+RTOqHZkyhE6AjFACVXqYGnmJMQ5Q8n+vfGrf9LmxepIGbumWmP7CGfovLdCWYosQ+vvu4orkBGcyYRiTfqodr8QFO+JX+eqPD94WfD53+uJmteboVkbfPX9x7g+44bDJdZLKmCIhP1NDZJtOlaTV44MEuvkEIEAGh6beNulyqD5K9CZRnQsgMpaCP400hq41LIOV/03o0VJ1g/zQZD1hNo//kf+idJ83VoeCLbqBERMSgHXASJvpLPHmxdFnpAQQNCfWNzVRDuVcppHCDenMk5ec58wUTl/qsykCgc=
+    on:
+      all_branches: true
+      condition: $TRAVIS_PULL_REQUEST !== false
   - provider: script
     skip_cleanup: true
     script: chmod +x ./deploy_docker_hub.sh && ./deploy_docker_hub.sh

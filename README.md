@@ -2,7 +2,7 @@
 
 This app is used for Software Tester classes on continuous integration and delivery.
 
-This repository is connected with Travis CI and every commit to the master branch will cause Travis to trigger a new build. Travis run linter and tests and then deploy the application on Heroku.
+This repository is connected with Travis CI and every commit will cause Travis to trigger a new build. Master branch will be deployed to the staging environment, tags to the production environment. Travis run linter and tests and then deploy the application on Heroku.
 
 - To work with the project we have to install all dependencies
 
